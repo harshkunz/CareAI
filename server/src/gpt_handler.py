@@ -1,11 +1,10 @@
 from dotenv import load_dotenv
 from langchain_pinecone import PineconeVectorStore
 from langchain.chains import create_retrieval_chain
-from embedding_handler import embedding_model
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
 from prompt_handler import *
-from embedding_handler import embedding_model
+from embedding_handler import get_embeddings
 import os
 import requests
 
@@ -19,7 +18,7 @@ PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 
 # Create chunk of each request
 index_name = "careai"
-embedding = embedding_model()
+embedding = get_embeddings()
 
 docsearch = PineconeVectorStore.from_existing_index(
     index_name=index_name,
