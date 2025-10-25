@@ -3,7 +3,7 @@ import os
 from pinecone import Pinecone
 from pinecone import ServerlessSpec 
 from langchain_pinecone import PineconeVectorStore
-from embedding_handler import embedding_model
+from embedding_handler import embedding_model, get_embeddings
 from text_handler import load_pdf_files, filter_to_minimal_docs, text_split
 
 load_dotenv()
@@ -55,7 +55,7 @@ class SentenceTransformerEmbeddings:
         embedding = self.model.encode(text, show_progress_bar=False)
         return embedding.tolist() 
 
-embedding = SentenceTransformerEmbeddings(Model)
+embedding_tool = SentenceTransformerEmbeddings(Model)
 
 
 # update vectors
@@ -63,10 +63,10 @@ embedding = SentenceTransformerEmbeddings(Model)
 docsearch = PineconeVectorStore.from_documents(
     documents=text_chunks,
     index_name=index_name,
-    embedding=embedding
+    embedding=embedding_tool
 )
 
 docsearch = PineconeVectorStore.from_existing_index(
     index_name=index_name,
-    embedding=embedding
+    embedding=embedding_tool
 )
