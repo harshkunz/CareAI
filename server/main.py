@@ -12,7 +12,6 @@ app = FastAPI(
     version="1.0.0"
 )
 
-'''
 frontend_url = os.getenv("FRONTEND_URL")
 origins = [
     "http://localhost:3000",
@@ -29,7 +28,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-'''
+
 
 app.include_router(text_router, prefix="/input", tags=[""])
 

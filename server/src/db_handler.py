@@ -1,10 +1,10 @@
-import os
 from dotenv import load_dotenv
+import os
 from pinecone import Pinecone
 from pinecone import ServerlessSpec 
 from langchain_pinecone import PineconeVectorStore
-from src.llm_handler import _
-
+from embedding_handler import embedding_model
+from text_handler import load_pdf_files, filter_to_minimal_docs, text_split
 
 load_dotenv()
 
@@ -16,13 +16,12 @@ pinecone_api_key = PINECONE_API_KEY
 pc = Pinecone(api_key=pinecone_api_key)
 
 
-# required fields
+# load data
 
-extracted_data = _(data='_path_')
-filter_data = _(extracted_data)
+extracted_data = load_pdf_files(data='_path_')
+filter_data = filter_to_minimal_docs(extracted_data)
 
-text_chunks = _()
-Model = _()
+text_chunks = text_split()
 
 
 # create vectors
@@ -40,7 +39,9 @@ if not pc.has_index(index_name):
 index = pc.Index(index_name)
 
 
-# update vectors
+# Model Loading
+
+Model = embedding_model()
 
 class SentenceTransformerEmbeddings:
     def __init__(self, model):
@@ -57,8 +58,15 @@ class SentenceTransformerEmbeddings:
 embedding = SentenceTransformerEmbeddings(Model)
 
 
+# update vectors
+
 docsearch = PineconeVectorStore.from_documents(
     documents=text_chunks,
+    index_name=index_name,
+    embedding=embedding
+)
+
+docsearch = PineconeVectorStore.from_existing_index(
     index_name=index_name,
     embedding=embedding
 )
