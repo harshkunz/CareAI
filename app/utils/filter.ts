@@ -29,13 +29,13 @@ export function filterMedicalResponse(raw: string): string {
               const rest = match[2].trim();
               return `
                 <li class="text-gray-300 text-base pl-4 relative">
-                  <span class="absolute left-0 top-2 text-teal-400 text-lg">•</span>
+                  <span class="absolute left-0 text-teal-400 text-lg">•</span>
                   <strong class="text-white font-semibold">${bold}</strong>: ${rest}
                 </li>`;
             } else {
               return `
                 <li class="text-gray-300 text-base pl-4 relative">
-                  <span class="absolute left-0 top-2 text-teal-400 text-lg">•</span>
+                  <span class="absolute left-0 text-teal-400 text-lg">•</span>
                   ${point}
                 </li>`;
             }
