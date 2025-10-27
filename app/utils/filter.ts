@@ -8,7 +8,7 @@ export function filterMedicalResponse(raw: string): string {
 
 
   let html = `
-    <div class="px-2 pt-2 rounded-2xl shadow-lg">
+    <div class="px-4 pt-2 rounded-2xl shadow-lg">
       <p class="text-gray-100 leading-relaxed text-base mb-5">
         ${paragraph}
       </p>
