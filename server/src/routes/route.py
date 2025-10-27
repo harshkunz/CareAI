@@ -21,6 +21,7 @@ async def find_result(request: QueryRequest):
     """
     try:
         query_text = request.query
+        
         result = await rag_chain.ainvoke({"input": query_text})
 
         if isinstance(result, dict) and "answer" in result:
@@ -35,3 +36,5 @@ async def find_result(request: QueryRequest):
 
     except Exception as e:
         return error_response(f"Error: {str(e)}")
+    
+
