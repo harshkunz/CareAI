@@ -31,11 +31,22 @@ class SentenceTransformerEmbeddings:
 
     def embed_documents(self, texts):
         embeddings = [self.model.feature_extraction(t) for t in texts]
-        return [e[0] if isinstance(e, list) and len(e) == 1 else e for e in embeddings]
+        processed = []
+        for e in embeddings:
+            if isinstance(e, list) and len(e) == 1:
+                e = e[0]
+            if hasattr(e, "tolist"):
+                e = e.tolist()
+            processed.append(e)
+        return processed
 
     def embed_query(self, text):
         embedding = self.model.feature_extraction(text)
-        return embedding[0] if isinstance(embedding, list) and len(embedding) == 1 else embedding
+        if isinstance(embedding, list) and len(embedding) == 1:
+            embedding = embedding[0]
+        if hasattr(embedding, "tolist"):
+            embedding = embedding.tolist()
+        return embedding
 
     async def aembed_documents(self, texts):
         return self.embed_documents(texts)
