@@ -22,8 +22,6 @@ export function filterMedicalResponse(raw: string): string {
           .map((point) => {
             
             point = point.replace(/^(\*|\-|•)+\s*/, "").trim();
-
-            
             const match = point.match(/(?:\*\*)?(.*?)\*\*:\s*(.*)/);
 
             if (match) {

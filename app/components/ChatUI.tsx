@@ -26,6 +26,8 @@ export default function MedicalChatUI() {
   const chatEndRef = useRef<HTMLDivElement | null>(null);
   const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
+  const BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
 
   const sendMessage = async () => {
     if(!input.trim()) return;
@@ -36,10 +38,11 @@ export default function MedicalChatUI() {
     setIsTyping(true);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/input/result", {
+      
+      const res = await fetch(`${BASE_URL}/input/result`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: input })
+        body: JSON.stringify({ query: input }),
       });
 
       const data = await res.json();
