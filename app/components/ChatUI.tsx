@@ -15,6 +15,7 @@ const acneInfo = `Test`;
 
 
 export default function MedicalChatUI() {
+  const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState([
     {
       sender: "bot",
@@ -32,6 +33,7 @@ export default function MedicalChatUI() {
     const userMsg = {sender: "user", text: input};
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
+    setIsTyping(true);
 
     try {
       const res = await fetch("http://127.0.0.1:8000/input/result", {
@@ -51,6 +53,9 @@ export default function MedicalChatUI() {
         { sender: "bot", text: "❌ Server error. Please try again later." },
       ])
       console.error("Error fetching medical response:", error);
+    }
+    finally {
+      setIsTyping(false);
     }
   };
 
@@ -128,6 +133,28 @@ export default function MedicalChatUI() {
             </div>
           </motion.div>
         ))}
+
+        {isTyping && (
+          <div className="flex justify-start">
+            <div className="flex ml-6 items-center px-6 py-3 rounded-3xl rounded-bl-none bg-black/50 border border-teal-400 shadow-lg">
+              <div className="flex space-x-1 animate-pulse">
+                {[...Array(6)].map((_, i) => (
+                  <span
+                    key={i}
+                    className="w-1.5 h-4 bg-teal-200 rounded-sm"
+                    style={{
+                      animation: "pulse 0.6s ease-in-out infinite",
+                      animationDelay: `${i * 0.1}s`,
+                    }}
+                  ></span>
+                ))}
+              </div>
+              <span className="ml-3 text-teal-400 text-sm tracking-wide italic">Analyzing query...</span>
+            </div>
+          </div>
+        )}
+
+
         <div ref={chatEndRef} />
       </div>
 

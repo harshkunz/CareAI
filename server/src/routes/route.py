@@ -32,9 +32,9 @@ async def find_result(request: QueryRequest):
         if not answer:
             answer = "No answer could be generated at this time, Due to server error."
 
+        
         return QueryResponse(query=query_text, answer=answer)
 
     except Exception as e:
         return error_response(f"Error: {str(e)}")
     
-
