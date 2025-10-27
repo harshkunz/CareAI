@@ -8,6 +8,7 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.messages import BaseMessage
 from prompt_handler import system_prompt
+from sentence_transformers import SentenceTransformer
 
 
 # ENVIRONMENT SETUP 
@@ -18,8 +19,7 @@ PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 
 
 # LOCAL EMBEDDING MODEL
-
-local_model = SentenceTransformer(r"D:\models\all-MiniLM-L6-v2")
+local_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
 class SentenceTransformerEmbeddings:
     def __init__(self, model):
