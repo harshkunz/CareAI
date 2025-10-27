@@ -26,7 +26,7 @@ export default function Navbar() {
           href="https://github.com/harshkunz/CareAI"
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute right-10 text-teal-300 hover:text-white transition-colors duration-300"
+          className="absolute right-12 text-teal-300 hover:text-white transition-colors duration-300"
         >
           <FaGithub size={28} />
         </a>
