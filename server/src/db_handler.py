@@ -3,7 +3,7 @@ import os
 from pinecone import Pinecone
 from pinecone import ServerlessSpec 
 from langchain_pinecone import PineconeVectorStore
-from embedding_handler import embedding_model, get_embeddings
+from embedding_handler import get_embeddings
 from text_handler import load_pdf_files, filter_to_minimal_docs, text_split
 
 load_dotenv()
@@ -41,7 +41,7 @@ index = pc.Index(index_name)
 
 # Model Loading
 
-Model = embedding_model()
+Model = get_embeddings()
 
 class SentenceTransformerEmbeddings:
     def __init__(self, model):

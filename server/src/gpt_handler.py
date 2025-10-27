@@ -1,37 +1,41 @@
 import os
 import requests
 from dotenv import load_dotenv
-from sentence_transformers import SentenceTransformer
 from langchain_pinecone import PineconeVectorStore
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.messages import BaseMessage
 from prompt_handler import system_prompt
-from sentence_transformers import SentenceTransformer
+from huggingface_hub import InferenceClient
 
 
 # ENVIRONMENT SETUP 
 
 load_dotenv()
+
 HF_API_KEY = os.getenv("HF_API_KEY")
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 
 
-# LOCAL EMBEDDING MODEL
-local_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+# LOCAL/ONLINE EMBEDDING MODEL
+
+local_model = InferenceClient(
+    "sentence-transformers/all-MiniLM-L6-v2",
+    token=HF_API_KEY
+)
 
 class SentenceTransformerEmbeddings:
     def __init__(self, model):
         self.model = model
 
     def embed_documents(self, texts):
-        embeddings = self.model.encode(texts, show_progress_bar=False)
-        return [e.tolist() for e in embeddings]
+        embeddings = [self.model.feature_extraction(t) for t in texts]
+        return [e[0] if isinstance(e, list) and len(e) == 1 else e for e in embeddings]
 
     def embed_query(self, text):
-        embedding = self.model.encode(text, show_progress_bar=False)
-        return embedding.tolist()
+        embedding = self.model.feature_extraction(text)
+        return embedding[0] if isinstance(embedding, list) and len(embedding) == 1 else embedding
 
     async def aembed_documents(self, texts):
         return self.embed_documents(texts)
@@ -40,7 +44,6 @@ class SentenceTransformerEmbeddings:
         return self.embed_query(text)
 
 embedding_tool = SentenceTransformerEmbeddings(local_model)
-
 
 # PINECONE RETRIEVER
 
