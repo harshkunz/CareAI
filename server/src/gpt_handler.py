@@ -9,6 +9,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.messages import BaseMessage
 from prompt_handler import system_prompt
 from sentence_transformers import SentenceTransformer
+from huggingface_hub import InferenceClient
 
 
 # ENVIRONMENT SETUP 
@@ -19,7 +20,7 @@ PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 
 
 # LOCAL EMBEDDING MODEL
-local_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+model = SentenceTransformer("sentence-transformers/paraphrase-MiniLM-L3-v2")
 
 class SentenceTransformerEmbeddings:
     def __init__(self, model):
