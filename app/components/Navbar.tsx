@@ -7,6 +7,7 @@ export default function Navbar() {
   return (
     <nav className="w-full bg-gradient-to-br from-black to-teal-800 shadow-lg sticky top-0 z-50 border-b border-teal-900">
       <div className="relative flex justify-center items-center py-4">
+        
         {/* Center Title */}
         <motion.div
           whileHover={{
@@ -21,7 +22,7 @@ export default function Navbar() {
           <h1 className="text-xl font-semibold text-teal-400">CareAI</h1>
         </motion.div>
 
-        {/* GitHub Icon (Right Corner) */}
+        {/* GitHub Icon */}
         <a
           href="https://github.com/harshkunz/CareAI"
           target="_blank"
