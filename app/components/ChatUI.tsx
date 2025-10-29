@@ -19,7 +19,7 @@ export default function MedicalChatUI() {
   const [messages, setMessages] = useState([
     {
       sender: "bot",
-      text: "👋 Hello User ! <br/> I’m CareAI, your AI medical assistant. <br/> How can I help you today?",
+      text: "👋 Hello User ! <br/><br/> I’m CareAI, your AI medical assistant. <br/> How can I help you today?",
     },
   ]);
   const [input, setInput] = useState("");
