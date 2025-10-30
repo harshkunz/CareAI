@@ -1,4 +1,9 @@
 ### ☐ CareAI Assistant
+CareAI is a medical assistant that leverages Large Language Models (LLMs) and Vector Databases to deliver context-aware, evidence-based medical insights. It processes trusted medical literature, generates semantic embeddings, and retrieves the most relevant information using similarity search. The system provides safe, concise, and professional explanations to user health queries, ensuring reliable medical understanding through an efficient pipeline of data extraction, embedding, and LLM inference.
+
+<p align="center">
+  <img src="/public/text.png" alt="System Architecture" height="620">
+</p>
 
 ### ☐ Tech Stack
 - **Frontend**: Next.js 16, React.js, TailwindCSS, Framer Motion, TypeScript
@@ -7,6 +12,27 @@
 - **Tools/Version**: Git, MCP
 
 ### ☐ Project Workflow
+- User enters a Query through the web interface.
+- Generates a vector embedding(MiniLM L6) for each query to enable semantic search.
+  
+<p align="center">
+  <img src="/public/Screenshot 2025-10-30 143028.png" alt="System Architecture" height="200">
+</p>
+
+- Server fetches similar medical contexts from the Vector DB using the query embedding.
+
+<p align="center">
+  <img src="/public/Screenshot 2025-10-30 143220.png" alt="System Architecture" height="200">
+</p>
+
+- LLMs uses the retrieved context to generate an accurate, concise, and evidence-based medical response.
+- Then output is structured using filter.ts(run algorithms) and converted into HTML.
+
+<p align="center">
+  <img src="/public/Screenshot 2025-10-27 194016.png" alt="System Architecture" height="400">
+</p>
+
+- The response is displayed to the user on a responsive Next.js UI
 
 ### ☐ Vector DB
 
