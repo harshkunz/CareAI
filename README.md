@@ -2,7 +2,7 @@
 CareAI is a medical assistant that leverages Large Language Models (LLMs) and Vector Databases to deliver context-aware, evidence-based medical insights. It processes trusted medical literature, generates semantic embeddings, and retrieves the most relevant information using similarity search. The system provides safe, concise, and professional explanations to user health queries, ensuring reliable medical understanding through an efficient pipeline of data extraction, embedding, and LLM inference.
 
 <p align="center">
-  <img src="/public/text.png" alt="System Architecture" height="520">
+  <img src="/public/text.png" alt="System Architecture" height="560">
 </p>
 
 ### ☐ Tech Stack
@@ -29,7 +29,7 @@ CareAI is a medical assistant that leverages Large Language Models (LLMs) and Ve
 - Then output is structured using filter.ts(run algorithms) and converted into HTML.
 
 <p align="center">
-  <img src="/public/Screenshot 2025-10-27 194016.png" alt="System Architecture" height="320">
+  <img src="/public/Screenshot 2025-10-27 194016.png" alt="System Architecture" height="360">
 </p>
 
 - The response is displayed to the user on a responsive Next.js UI
