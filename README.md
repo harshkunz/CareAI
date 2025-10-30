@@ -35,6 +35,11 @@ CareAI is a medical assistant that leverages Large Language Models (LLMs) and Ve
 - The response is displayed to the user on a responsive Next.js UI
 
 ### ☐ Vector DB
+Stores medical text embeddings in a Vector Database (Pinecone) for fast semantic search and context retrieval.
+
+<p align="center">
+  <img src="/public/Screenshot 2025-10-30 151307.png" alt="System Architecture" height="360">
+</p>
 
 ### ☐ Project Structure
 ``` Java
