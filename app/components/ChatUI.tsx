@@ -1,9 +1,9 @@
 "use client";
 import { useState, useRef, useEffect, useMemo } from "react";
-import { SendHorizontal } from "lucide-react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { filterMedicalResponse } from "../utils/filter";
+import Image from "next/image";
 
 
 const LiquidEther = dynamic(() => import("../utils/LiquidEther"), {
@@ -183,9 +183,16 @@ export default function MedicalChatUI() {
           />
           <button
             onClick={sendMessage}
-            className="font-bold border border-transparent hover:border hover:border-white text-white rounded-full p-2 transition"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            className="font-bold border border-transparent text-white rounded-full p-2 transition"
           >
-            <SendHorizontal className="w-5 h-5" />
+            <Image
+              src={hovered ? "/send 1.png" : "/send.png"}
+              alt="send"
+              width={20}
+              height={20}
+            />
           </button>
         </div>
       </div>
