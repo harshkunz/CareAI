@@ -16,6 +16,7 @@ const acneInfo = `Test`;
 
 export default function MedicalChatUI() {
   const [isTyping, setIsTyping] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const [messages, setMessages] = useState([
     {
       sender: "bot",
