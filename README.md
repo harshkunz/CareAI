@@ -11,7 +11,7 @@ CareAI is a medical assistant that leverages Large Language Models (LLMs) and Ve
 - **Database**: Pinecone Vector
 - **Tools/Version**: Git, MCP
 
-### ☐ Project Workflow
+### ☐ Work Process
 - User enters a Query through the web interface.
 - Generates a vector embedding(MiniLM L6) for each query to enable semantic search.
   
