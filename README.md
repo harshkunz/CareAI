@@ -22,7 +22,7 @@ CareAI is a medical assistant that leverages Large Language Models (LLMs) and Ve
 - Server fetches similar medical contexts from the Vector DB using the query embedding.
 
 <p align="center">
-  <img src="/public/Screenshot 2025-10-30 143220.png" alt="System Architecture" height="200">
+  <img src="/public/Screenshot 2025-10-30 143220.png" alt="System Architecture" height="160">
 </p>
 
 - LLMs uses the retrieved context to generate an accurate, concise, and evidence-based medical response.
