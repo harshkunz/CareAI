@@ -1,5 +1,5 @@
 export function filterMedicalResponse(raw: string): string {
-  if (!raw) return `<p class="text-gray-400 italic">No information available.</p>`;
+  if (!raw) return `<p class="text-gray-500 italic">No information available.</p>`;
 
   
   const parts = raw.split(/\s*[•-]\s+/);
@@ -9,7 +9,7 @@ export function filterMedicalResponse(raw: string): string {
 
   let html = `
     <div class="px-4 pt-2 rounded-2xl shadow-lg">
-      <p class="text-gray-100 leading-relaxed text-base mb-5">
+      <p class="text-gray-100 dark:text-gray-900 leading-relaxed text-base mb-5">
         ${paragraph}
       </p>
   `;
@@ -28,14 +28,14 @@ export function filterMedicalResponse(raw: string): string {
               const bold = match[1].trim();
               const rest = match[2].trim();
               return `
-                <li class="text-gray-300 text-base pl-4 relative">
-                  <span class="absolute left-0 text-teal-400 text-lg">•</span>
-                  <strong class="text-white font-semibold">${bold}</strong>: ${rest}
+                <li class="text-gray-300 dark:text-gray-700 text-base pl-4 relative">
+                  <span class="absolute left-0 text-teal-400 dark:text-teal-700 text-lg">•</span>
+                  <strong class="text-white dark:text-black font-semibold">${bold}</strong>: ${rest}
                 </li>`;
             } else {
               return `
-                <li class="text-gray-300 text-base pl-4 relative">
-                  <span class="absolute left-0 text-teal-400 text-lg">•</span>
+                <li class="text-gray-300 dark:text-gray-700 text-base pl-4 relative">
+                  <span class="absolute left-0 text-teal-400 dark:text-teal-700 text-lg">•</span>
                   ${point}
                 </li>`;
             }
