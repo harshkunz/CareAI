@@ -83,7 +83,7 @@ CareAI/
 #### 1. Clone the repository
 ```bash
 git clone https://github.com/harshkunz/careAI.git
-cd Job-Finder
+cd CareAI
 ```
 
 #### 2. Frontend setup (Next.js 16)
