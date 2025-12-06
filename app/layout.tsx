@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="data:," />
+        <link rel="icon" href="header.png" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} >
         <ThemeProvider>
